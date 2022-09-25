@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-06-09 15:36:40
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-21 00:19:34
+ * @LastEditTime: 2022-09-21 19:25:04
  * @Description: 填写简介
  */
 
@@ -143,7 +143,7 @@ module.exports = {
       webpackConfig.stats = "errors-warnings";
 
       // devtool 决定sourcemap的形式
-      // webpackConfig.devtool = false;
+      webpackConfig.devtool = "eval-source-map";
       whenProd(() => {
         // 生产环境关掉devtool 不输出sourcemap文件
         webpackConfig.devtool = false;
