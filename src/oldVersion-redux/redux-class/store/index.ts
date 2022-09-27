@@ -2,9 +2,17 @@
  * @Author: 王荣
  * @Date: 2022-09-26 16:12:41
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 22:29:12
+ * @LastEditTime: 2022-09-27 22:47:11
  * @Description: 填写简介
  */
+
+// import { createStore }  from 'redux';
+// import reducer from './reducer';
+
+// // 基础用法，不使用任何中间件 redux最小用法
+// const store = createStore(reducer);
+
+// export default store;
 
 // 使用redux thunk中间件
 //applyMiddleware来引入redux中间件 保证可使用中间件

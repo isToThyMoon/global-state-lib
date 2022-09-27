@@ -2,11 +2,11 @@
  * @Author: 王荣
  * @Date: 2022-09-26 20:41:28
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 21:36:23
+ * @LastEditTime: 2022-09-27 23:30:24
  * @Description: 填写简介
  */
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 import TodoListUI from "./TodoListUI";
 
@@ -32,10 +32,10 @@ interface TodoListProps {
 interface TodoListState {}
 
 class TodoList extends Component<TodoListProps, TodoListState> {
-  constructor(props: TodoListProps) {
-    super(props);
-    console.log(props);
-  }
+  // constructor(props: TodoListProps) {
+  //   super(props);
+  //   console.log(props);
+  // }
 
   componentDidMount() {
     // 首次挂载可以进行axios请求数据 执行store数据修改

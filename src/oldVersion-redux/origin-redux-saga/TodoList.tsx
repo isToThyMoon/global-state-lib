@@ -2,11 +2,11 @@
  * @Author: 王荣
  * @Date: 2022-09-26 16:19:38
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 16:48:54
+ * @LastEditTime: 2022-09-27 23:29:31
  * @Description: 填写简介
  */
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import store from "./store/";
 import {
   getInputChangeAction,
@@ -35,13 +35,13 @@ class TodoList extends Component<TodoListProps, TodoListState> {
 
   componentDidMount() {
     // 应用redux saga
-    const action = getInitList();
-    store.dispatch(action);
-    // axios.get('/list.json').then((res)=>{
-    // 	const data = res.data;
-    // 	const action = initListAction(data);
-    // 	store.dispatch(action);
-    // }).catch();
+    // const action = getInitList();
+    // store.dispatch(action);
+    // // axios.get('/list.json').then((res)=>{
+    // // 	const data = res.data;
+    // // 	const action = initListAction(data);
+    // // 	store.dispatch(action);
+    // // }).catch();
   }
 
   handleStoreChange() {

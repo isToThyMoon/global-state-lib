@@ -2,22 +2,20 @@
  * @Author: 王荣
  * @Date: 2022-09-22 16:01:08
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-24 20:18:57
+ * @LastEditTime: 2022-09-27 22:32:43
  * @Description: 填写简介
  */
 
-import React from "react";
-import { Provider, atom, useAtom } from "jotai";
+import React, { useEffect } from "react";
+import { atom, useAtom, useAtomValue } from "jotai";
 import { withImmer, atomWithImmer, useImmerAtom } from "jotai/immer";
-import ChildJotai from "./child";
 
 // primitive atom and derived atom
-const msgAtom = atom("dididi");
+const msgAtom = atom("meeesage");
 
 const lowerMsgAtom = atom(
   (get) => get(msgAtom).toLowerCase(),
   (get, set, newValue: string) => {
-    console.log("write lowerMsgAtom", newValue);
     set(msgAtom, newValue);
     // set(UpperMsgAtom, newValue);
   }
@@ -26,7 +24,8 @@ const lowerMsgAtom = atom(
 const UpperMsgAtom = atom(
   (get) => get(msgAtom).toUpperCase(),
   (get, set, newValue: string) => {
-    // set(msgAtom, newValue);
+    // 修改派生atom 调用派生atom的write方法，在write方法中不能set自身
+    // x！ set(UpperMsgAtom, newValue); 不能set派生atom自身
     set(lowerMsgAtom, newValue);
   }
 );
@@ -35,12 +34,12 @@ export const regularNumAtom = atom(0); // regular atom
 export const derivedWithImmerNumAtom = withImmer(regularNumAtom); // derived immer atom from regular atom
 export const ImmerNumAtom = atomWithImmer(0); // original immer atom
 
-const Add = () => {
+const JotaiImmerDemo = () => {
   const [msg, setMsg] = useAtom(msgAtom);
   const [lowerMsg, setLowerMsg] = useAtom(lowerMsgAtom);
   const [upperMsg, setUpperMsg] = useAtom(UpperMsgAtom);
 
-  console.log("Add rerender", msg);
+  console.log("JotaiImmerDemo rerender", msg);
 
   const [regularNum, setRegularNum] = useAtom(regularNumAtom);
   const [derivedNum, setDerivedNum] = useAtom(derivedWithImmerNumAtom);
@@ -59,18 +58,25 @@ const Add = () => {
   */
   return (
     <div>
+      <div className="split-line">------------jotai派生atom--------------</div>
+      <div>------------lowerMsg upperMsg都派生自msg---------------</div>
+      <div>
+        -----修改派生atom
+        调用派生atom的write方法，在write方法中不能set自身---------
+      </div>
       <div>
         <div>msg:{msg}</div>
         <div>
-          lowerMsg:{lowerMsg}{" "}
+          lowerMsg:{lowerMsg}
           <button onClick={() => setLowerMsg("dadada")}>change</button>
         </div>
         <div>
-          upperMsg:{upperMsg}{" "}
+          upperMsg:{upperMsg}
           <button onClick={() => setUpperMsg("dododo")}>change</button>
         </div>
       </div>
-      <br />
+
+      <div className="split-line">------------jotai-immer-------------</div>
       <div>
         常规atom: {regularNum}
         <button
@@ -108,4 +114,18 @@ const Add = () => {
   );
 };
 
-export default Add;
+const ChildJotai = React.memo(() => {
+  console.log("JotaiDemoChild rerender");
+  const originImmerNum = useAtomValue(ImmerNumAtom);
+
+  useEffect(() => {
+    console.log("JotaiDemoChild effect");
+  });
+  return (
+    <div>
+      <div>ChildJotai: atomWithImmer自主创建的全新atom: {originImmerNum}</div>
+    </div>
+  );
+});
+
+export default JotaiImmerDemo;

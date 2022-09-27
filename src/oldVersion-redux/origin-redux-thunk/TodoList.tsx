@@ -2,11 +2,11 @@
  * @Author: 王荣
  * @Date: 2022-09-26 11:51:04
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 16:07:19
+ * @LastEditTime: 2022-09-27 23:29:59
  * @Description: 填写简介
  */
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import store from "./store";
 import {
   getInputChangeAction,

@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-26 16:19:45
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 21:30:16
+ * @LastEditTime: 2022-09-27 22:38:48
  * @Description: 填写简介
  */
 import React from "react";
@@ -51,7 +51,6 @@ const TodoListUI: React.FC<TodoListUIProps> = (props) => {
           )}
         />
       </div>
-      <span className="split-line">--------------------</span>
     </div>
   );
 };

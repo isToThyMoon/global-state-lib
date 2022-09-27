@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-23 13:58:12
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-23 15:44:44
+ * @LastEditTime: 2022-09-27 20:46:13
  * @Description: 填写简介
  */
 import { useAtom } from "jotai";
@@ -12,10 +12,10 @@ import {
   regularNumAtom,
   derivedWithImmerNumAtom,
   ImmerNumAtom,
-} from "./jotai-immer";
+} from "./jotai-immer-demo";
 
-const Extra = () => {
-  console.log("Extra rerender");
+const JotaiImmerConsumer = () => {
+  console.log("JotaiConsumer rerender");
   const [regularNum, setRegularNum] = useAtom(regularNumAtom);
   const [derivedNum, setDerivedNum] = useAtom(derivedWithImmerNumAtom);
   const [originImmerNum, setOriginImmerNum] = useAtom(ImmerNumAtom);
@@ -39,4 +39,4 @@ const Extra = () => {
   );
 };
 
-export default Extra;
+export default JotaiImmerConsumer;

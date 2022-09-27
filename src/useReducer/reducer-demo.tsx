@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-24 20:16:38
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-24 20:18:20
+ * @LastEditTime: 2022-09-27 22:40:33
  * @Description: 填写简介
  */
 
@@ -30,11 +30,12 @@ const reducer = (state: any, { type, payload }: any) => {
   }
 };
 
-const List = () => {
+const ReducerDemo = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("useReducer demo render", state);
+  // console.log("useReducer demo render", state);
   return (
     <>
+      <div className="split-line">------------useReducer-------------</div>
       List: {JSON.stringify(state)}
       <button
         onClick={() =>
@@ -58,4 +59,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default ReducerDemo;
