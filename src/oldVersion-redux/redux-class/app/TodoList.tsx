@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-26 20:41:28
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-27 23:30:12
+ * @LastEditTime: 2022-09-28 19:31:51
  * @Description: 填写简介
  */
 import React, { Component } from "react";
@@ -80,9 +80,10 @@ class TodoList extends Component<TodoListProps, TodoListState> {
 
 // store数据有更新时，connect高阶组件自动更新组件，重新渲染组件
 const mapStateToProps = (state: any) => {
+  const appReducer = state.appReducer;
   return {
-    inputValue: state.inputValue,
-    list: state.list,
+    inputValue: appReducer.inputValue,
+    list: appReducer.list,
   };
 };
 

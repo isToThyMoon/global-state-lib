@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-26 17:24:58
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 23:12:46
+ * @LastEditTime: 2022-09-29 00:09:28
  * @Description: 填写简介
  */
 
@@ -16,68 +16,130 @@ import {
   DELETE_TODO_ITEM,
   INIT_LIST_ACTION,
 } from "./actionTypes";
-import { fromJS, List } from "immutable";
+import { produce } from "immer";
 
 interface actionType {
   type: string;
   value?: any;
 }
 
-// 对ts支持很差 这里不写any下面state.merge等方法直接无法使用
-// formJS() toJS()是耗费性能的操作
-// 读取性能较差
-// 包体积60多k
-// 自定义api较多
-// 无法调试 console.log出来只有一个类型信息
 const defaultState: any = {
   inputValue: "",
   list: ["1", "2", "3"],
 };
 
 // 常规reducer导出的是一个纯函数 唯一输入 唯一输出 没有副作用
-const reducer = (state = defaultState, action: actionType) => {
+// const reducer = (state = defaultState, action: actionType) => {
+//   switch (action.type) {
+//     case INIT_LIST_ACTION:
+//       return {
+//         ...state,
+//         list: action.value,
+//       };
+
+//     case CHANGE_INPUT_VALUE:
+//       return {
+//         ...state,
+//         inputValue: action.value,
+//       };
+
+//     case ADD_TODO_ITEM:
+//       return {
+//         ...state,
+//         inputValue: "",
+//         list: state.list.concat([state.inputValue]),
+//       };
+
+//     case DELETE_TODO_ITEM:
+//       const newState = JSON.parse(JSON.stringify(state));
+
+//       newState.list.splice(action.value, 1);
+
+//       return newState;
+
+//     // case DELETE_TODO_ITEM:
+//     //   return state.merge({
+//     //     comId: action.value.comId,
+//     //     currentUserId: action.value.currentUserId,
+//     //     currentUsername: action.value.currentUsername,
+
+//     //   });
+
+//     // case 'CHANGERESOURCEIDSLIST':
+//     //   return state.merge({
+//     //     accessibleResourceIdList: List(action.value.accessibleResourceIdList)
+//     //   });
+
+//     default:
+//       return state;
+//   }
+// };
+
+// const reducer = (state = defaultState, action: actionType) => {
+//   return produce(state, (draftState)=>{
+//     switch (action.type) {
+//       case INIT_LIST_ACTION:
+//         draftState.list = action.value
+//         break;
+//       case CHANGE_INPUT_VALUE:
+//         draftState.inputValue = action.value
+//         break;
+//       case ADD_TODO_ITEM:
+//         draftState.list.push(state.inputValue)
+//         break;
+//       case DELETE_TODO_ITEM:
+//         draftState.list.splice(action.value, 1);
+//         break;
+//       default:
+//         return draftState;
+//     }
+//   })
+// };
+
+const reducer = produce((draftState = defaultState, action: actionType) => {
   switch (action.type) {
     case INIT_LIST_ACTION:
-      return {
-        ...state,
-        list: action.value,
-      };
-
+      draftState.list = action.value;
+      break;
     case CHANGE_INPUT_VALUE:
-      return {
-        ...state,
-        inputValue: action.value,
-      };
-
+      draftState.inputValue = action.value;
+      break;
     case ADD_TODO_ITEM:
-      return {
-        ...state,
-        inputValue: "",
-        list: state.list.concat([state.inputValue]),
-      };
-
+      draftState.list.push(draftState.inputValue);
+      draftState.inputValue = "";
+      break;
     case DELETE_TODO_ITEM:
-      const newState = JSON.parse(JSON.stringify(state));
-
-      newState.list.splice(action.value, 1);
-
-      return newState;
-
-    // case DELETE_TODO_ITEM:
-    //   return state.merge({
-    //     comId: action.value.comId,
-    //     currentUserId: action.value.currentUserId,
-    //     currentUsername: action.value.currentUsername,
-
-    //   });
-
-    // case 'CHANGERESOURCEIDSLIST':
-    //   return state.merge({
-    //     accessibleResourceIdList: List(action.value.accessibleResourceIdList)
-    //   });
-
+      draftState.list.splice(action.value, 1);
+      break;
     default:
-      return state;
+      return draftState;
   }
-};
+});
+
 export default reducer;
+
+// class Immer {
+
+//   //...
+
+//   produce = (base: any, recipe?: any, patchListener?: any) => {
+//     // curried invocation
+
+//     if (typeof base === "function" && typeof recipe !== "function") {
+
+//       const defaultBase = recipe;
+//       recipe = base;
+
+//       const self = this;
+//       return function curriedProduce(this: any,base = defaultBase, ...args: any[]) {
+//         return self.produce(base, (draft) => recipe.call(this, draft, ...args))
+//       }
+
+//     }
+//   }
+
+// }
+
+// const immer = new Immer()
+
+// export const produce = immer.produce
