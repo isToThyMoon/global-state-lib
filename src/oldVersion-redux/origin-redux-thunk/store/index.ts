@@ -2,10 +2,14 @@
  * @Author: 王荣
  * @Date: 2022-09-26 11:50:55
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-26 17:39:10
+ * @LastEditTime: 2022-10-25 11:51:36
  * @Description: 填写简介
  */
-import { createStore, applyMiddleware, compose } from "redux"; //applyMiddleware来引入redux中间件 保证可使用中间件； thunk saga redux-dev-tool都是redux的中间件
+import {
+  legacy_createStore as createStore,
+  applyMiddleware,
+  compose,
+} from "redux"; //applyMiddleware来引入redux中间件 保证可使用中间件； thunk saga redux-dev-tool都是redux的中间件
 import reducer from "./reducer"; // reducer
 import createSagaMiddleware from "redux-saga"; // 创建saga中间件
 // import TodoSagas from './sagas';

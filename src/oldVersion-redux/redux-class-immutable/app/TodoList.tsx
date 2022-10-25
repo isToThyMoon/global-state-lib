@@ -14,10 +14,10 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-} from "./store/actionCreators";
+} from "./recipe/actionCreators";
 // redux
 import { AnyAction } from "redux";
-import { actionCreators } from "./store";
+import { actionCreators } from "./recipe";
 import { connect } from "react-redux";
 // ts redux
 import { ThunkDispatch } from "redux-thunk";

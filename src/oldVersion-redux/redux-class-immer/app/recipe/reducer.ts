@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-26 17:24:58
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-29 00:09:28
+ * @LastEditTime: 2022-10-25 21:35:32
  * @Description: 填写简介
  */
 
@@ -118,6 +118,10 @@ const reducer = produce((draftState = defaultState, action: actionType) => {
 
 export default reducer;
 
+// 为什么经过produce包装后的reducer函数就具备了immutable数据的能力，
+// produce函数传入一个函数时，会进行柯里化（偏函数），
+// 返回一个处理后的柯里化函数，调用时自动执行produce入参函数的逻辑，返回immutable数据。
+
 // class Immer {
 
 //   //...
@@ -131,12 +135,15 @@ export default reducer;
 //       recipe = base;
 
 //       const self = this;
+//       // ts2.0开始，定义函数时第一个参数为this可指定this的类型。但不影响正常传参顺序
 //       return function curriedProduce(this: any,base = defaultBase, ...args: any[]) {
 //         return self.produce(base, (draft) => recipe.call(this, draft, ...args))
 //       }
 
 //     }
 //   }
+
+//   //...
 
 // }
 

@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-26 23:37:09
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-27 01:11:38
+ * @LastEditTime: 2022-10-25 22:41:45
  * @Description: 填写简介
  */
 /*
@@ -29,14 +29,14 @@ const initialState: ITodoListState = {
 // createSlice返回的对象有两个属性 actions 和reducer 对应旧版redux的两个概念
 // aciton包含了本次更新操作的type和value 通过dispatch传递给store，告知本次更新需要如何更新数据
 // reducer作为纯函数接收prevState和当前的action，根据store传来的本次操作action，对比aciton的type，依据action.value返回一个新state更新store数据
-// 这里的actions相当于旧版模版代码中actionCreators的所有集合。
+// 这里的actions相当于旧版模版代码中actionCreators的所有集合对象。
 // reducer还是相当于一个子reducer
 export const todoListSlice = createSlice({
-  name: "todoListSlice", // 命名空间，在调用action的时候会默认的设置为action的前缀 自动的把每一个action进行独立，解决了action的type出现同名的文件。在使用的时候默认会使用name/actionName
+  name: "todoListSlice", // 命名空间，在调用action的时候会默认的设置为action type的前缀 自动的把每一个action进行独立，解决了action的type出现同名的文件。在使用的时候默认会使用name/actionName
   initialState, //该切片维护的状态
   reducers: {
-    //定义action。由于内置了immutable插件immer，可以直接使用赋值的方式进行数据的改变，不需要每一次都返回一个新的state数据。
-    // 这里的属性函数名会自动的导出为actions，在组件中可以直接通过dispatch进行触发
+    //定义actionsCreators和reducer。由于内置了immutable插件immer，可以直接使用赋值的方式进行数据的改变，不需要每一次都返回一个新的state数据。
+    // 这里的属性函数会自动的导出为actionsCreators，在组件中可以直接通过dispatch进行触发
     // 被导出的action类型 todoListSlice.actions.changeInputValue：
     //   changeInputValue(payload: {
     //     inputValue: string;
@@ -55,6 +55,8 @@ export const todoListSlice = createSlice({
     //action:  {type: 'todoListSlice/addItem', payload: undefined}
     addItem(state, action: PayloadAction) {
       console.log(state.inputValue);
+      //{type: "todoListSlice/addItem",payload:undefined}
+      console.log("action", action);
       state.list.push(state.inputValue);
       state.inputValue = "";
     },
@@ -72,11 +74,16 @@ export default todoListSlice.reducer; // 默认导出reducer 在store中组合�
 export const todoListActions = todoListSlice.actions; //和原reducer的action概念是一样的 但它的类型已经变成上面reducer里的一个个的方法 导出action
 
 // 内置了thunk插件，可以直接处理thunk函数
+// dispatch(asyncChange(123)); dispatch会直接执行asyncChange()返回的匿名函数，
+// 匿名函数接收dispatch，getState这两个参数，dispatch为它提供了在异步操作完成后继续派发状态更新的能力，
+// getState提供了在函数执行中获得当前数仓state状态的能力
 export const asyncChange = (payload) => (dispatch, getState) => {
-  console.log("beforestate", getState());
-  // dispatch(projectActions.increment(payload)); // dispatch(increment({ step: 2 })); // dispatch派发action
-  dispatch(todoListActions.deleteItem(payload)); // dispatch(increment({ step: 2 })); // dispatch派发action
-  console.log("state", getState());
+  // console.log("beforestate", getState());
+  // dispatch(todoListActions.deleteItem(payload)); // dispatch(increment({ step: 2 })); // dispatch派发action
+  // // 注意这里dispatch是同步更新的，先后的beforestate，state打印结果不同，dispatch之后getState()得到的已经是更新后的状态
+  // console.log("state", getState());
+
+  // dispatch直接执行的函数内部可以进行异步操作，可以在promise resolve或者reject之后继续dispatch派发aciton
   return Promise.resolve(getState().Project.count);
 };
 
