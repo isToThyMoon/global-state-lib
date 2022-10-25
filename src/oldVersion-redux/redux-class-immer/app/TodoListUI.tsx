@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-09-26 11:51:13
  * @LastEditors: 王荣
- * @LastEditTime: 2022-09-27 22:39:02
+ * @LastEditTime: 2022-10-24 09:18:11
  * @Description: 填写简介
  */
 
@@ -22,7 +22,9 @@ interface TodoListUIProps {
 const TodoListUI: React.FC<TodoListUIProps> = (props) => {
   return (
     <div>
-      <span className="split-line">----------origin-redux-class----------</span>
+      <span className="split-line">
+        ----------origin-redux-class-immer----------
+      </span>
       <div className="todolist-wrap">
         <div>
           <Input
