@@ -1,0 +1,45 @@
+body {
+  text-align: center;
+}
+
+html{
+  &::-webkit-scrollbar{
+    //整个滚动条
+    width: 5px;
+    height: 8px;
+    // background-color: #aaa;
+  }
+  &::-webkit-scrollbar-button{
+    //滚动条上的按钮 (上下箭头)
+  }
+  &::-webkit-scrollbar-thumb{
+    //滚动条上的滚动滑块
+    background-color: #222;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-track{
+    //滚动条轨道 包含thumb的轨道
+  }
+  &::-webkit-scrollbar-track-piece{
+    //滚动条没有滑块的轨道部分
+  }
+  &::-webkit-scrollbar-corner{
+    //当同时有垂直滚动条和水平滚动条时交汇的部分
+  }
+  &::-webkit-resizer{
+    //某些元素的corner部分的部分样式(例:textarea的可拖动按钮)
+  }
+}
+.split-line {
+  font-size: 28px;
+  line-height: 1.5;
+  color: #222;
+  font-weight: bold;
+}
+
+.todolist-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

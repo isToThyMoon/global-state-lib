@@ -5,13 +5,15 @@
  * @LastEditTime: 2022-10-25 22:22:23
  * @Description: 填写简介
  */
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { todoListActions, asyncChange } from "./slice/todolist-slice";
 // import "antd/dist/antd.css";
 
 import TodoListUI from "./TodoListUI";
+
+import { useGetPageMesQuery } from "../../RTK-Query/RTKQuery-witch-axios";
 
 interface TodoListProps {}
 
@@ -22,7 +24,14 @@ const TodoList: React.FC<TodoListProps> = (props) => {
   const { inputValue, list } = useSelector(
     (state: RootState) => state.TodoList
   );
+  console.log("请求");
+  const query = useGetPageMesQuery();
+  const { data } = useGetPageMesQuery();
 
+  console.log(query);
+  useEffect(() => {
+    console.log("首次");
+  }, []);
   const handleInputChange = (e) => {
     dispatch(todoListActions.changeInputValue({ inputValue: e.target.value }));
   };
