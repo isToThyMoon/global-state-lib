@@ -29,8 +29,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 // const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const BundleAnalyzerPlugin =
-//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   babel: {
@@ -143,10 +143,10 @@ module.exports = {
       webpackConfig.stats = "errors-warnings";
 
       // devtool 决定sourcemap的形式
-      webpackConfig.devtool = "eval-source-map";
+      webpackConfig.devtool = "source-map";
       whenProd(() => {
         // 生产环境关掉devtool 不输出sourcemap文件
-        webpackConfig.devtool = false;
+        webpackConfig.devtool = "source-map";
       });
       // 修改entry
       webpackConfig.entry = {
@@ -248,7 +248,7 @@ module.exports = {
               // 详见文档资源模块（asset module）的解释
               // type: "javascript/auto",
               test: /[\\/]src[\\/]/,
-              // priority: 10,
+              priority: 10,
               chunks: (chunk) => {
                 return chunk.name === "app";
               },
@@ -296,6 +296,17 @@ module.exports = {
             //         return chunk.name === "button";
             //     },
             //     enforce : true,
+            // },
+            // appVendor: {
+            //   name: "default",
+            //   // webpack4之前用test区分module位置，webpack5推荐使用type区分类型
+            //   // 详见文档资源模块（asset module）的解释
+            //   // type: "javascript/auto",
+            //   // test: /[\\/]node_modules[\\/]/,
+            //   // priority: 20,
+            //   chunks: (chunk) => {
+            //     return chunk.name === "app";
+            //   },
             // },
           },
         },
@@ -414,9 +425,9 @@ module.exports = {
       // 需要分析打包后各文件包含模块时开启，使用npm run build
       // npm run deploy是个人定制在build完成后再自动将build后的资源文件copy到发布仓库并自动git三连
       // 如果开启了bundleanalyzer插件并开启分析的服务器 会导致deploy无法执行下面的自动部署代码。
-      // whenProd(() => {
-      //   addPlugins(webpackConfig, [new BundleAnalyzerPlugin()]);
-      // });
+      whenProd(() => {
+        addPlugins(webpackConfig, [new BundleAnalyzerPlugin()]);
+      });
 
       // 重新配置html-webpack-plugin
       // const {

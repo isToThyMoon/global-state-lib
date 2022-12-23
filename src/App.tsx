@@ -17,13 +17,13 @@ function App() {
   console.log("app rerender");
   return (
     <div className="App">
-      {/* <ReducerDemo></ReducerDemo>
+      <ReducerDemo></ReducerDemo>
 
-      <ReduxDemo></ReduxDemo> */}
+      <ReduxDemo></ReduxDemo>
 
       <ReduxToolkitDemo></ReduxToolkitDemo>
 
-      {/* <JotaiDemo></JotaiDemo> */}
+      <JotaiDemo></JotaiDemo>
     </div>
   );
 }
