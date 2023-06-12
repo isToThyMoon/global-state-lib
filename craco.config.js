@@ -47,6 +47,16 @@ module.exports = {
         },
         "antd",
       ],
+      [
+        "import",
+        {
+          libraryName: "ayri-ui",
+          libraryDirectory: "es",
+          // 按需加载定制less主题样式必须是true，style: 'css'是使用css文件没有样式变量 定制会失效
+          style: true,
+        },
+        "ayri-ui",
+      ],
     ],
   },
   // craco 提供的插件
@@ -140,7 +150,8 @@ module.exports = {
 
       // 修改统计信息输出 打包或开发时build完毕的控制台输出
       // 'errors-only' 'errors-warnings' 'minimal' 'none' 'normal' 'verbose' 'detailed' 'summary'
-      webpackConfig.stats = "errors-warnings";
+      // webpackConfig.stats = "errors-warnings";
+      webpackConfig.stats = "normal";
 
       // devtool 决定sourcemap的形式
       webpackConfig.devtool = "source-map";
@@ -345,14 +356,15 @@ module.exports = {
           }
         );
 
-        // console.log(
-        //   "!!!webpackConfig.module",
-        //   webpackConfig.module.rules[1].oneOf[7].use[0],
-        //   webpackConfig.module.rules[1].oneOf[7].use[1],
-        //   webpackConfig.module.rules[1].oneOf[7].use[2],
-        //   webpackConfig.module.rules[1].oneOf[7].use[3],
-        //   webpackConfig.module.rules[1].oneOf[7].use[4],
-        // );
+        console.log(
+          "!!!webpackConfig.module",
+          webpackConfig.module.rules[1].oneOf,
+          webpackConfig.module.rules[1].oneOf[7].use[0],
+          webpackConfig.module.rules[1].oneOf[7].use[1],
+          webpackConfig.module.rules[1].oneOf[7].use[2],
+          webpackConfig.module.rules[1].oneOf[7].use[3],
+          webpackConfig.module.rules[1].oneOf[7].use[4]
+        );
       });
 
       // 修改loader

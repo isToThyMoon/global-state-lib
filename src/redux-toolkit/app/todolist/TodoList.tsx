@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-10-25 22:22:23
  * @Description: 填写简介
  */
-import React, { Component, useEffect } from "react";
+import React, { Component, Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { todoListActions, asyncChange } from "./slice/todolist-slice";
@@ -25,10 +25,10 @@ const TodoList: React.FC<TodoListProps> = (props) => {
     (state: RootState) => state.TodoList
   );
   console.log("请求");
-  const query = useGetPageMesQuery();
-  const { data } = useGetPageMesQuery();
+  // const query = useGetPageMesQuery();
+  // const { data } = useGetPageMesQuery();
 
-  console.log(query);
+  // console.log('query',query);
   useEffect(() => {
     console.log("首次");
   }, []);
@@ -44,16 +44,24 @@ const TodoList: React.FC<TodoListProps> = (props) => {
   const handleItemDelete = (index) => {
     dispatch(todoListActions.deleteItem(index));
   };
-
+  console.log("TodoList rerender");
   return (
-    <TodoListUI
-      inputValue={inputValue}
-      list={list}
-      handleInputChange={handleInputChange}
-      handleBtnClick={handleBtnClick}
-      handleItemDelete={handleItemDelete}
-    />
+    <Fragment>
+      <TodoListUI
+        inputValue={inputValue}
+        list={list}
+        handleInputChange={handleInputChange}
+        handleBtnClick={handleBtnClick}
+        handleItemDelete={handleItemDelete}
+      />
+      <Foo></Foo>
+    </Fragment>
   );
+};
+
+const Foo: React.FC<TodoListProps> = (props) => {
+  console.log("Foo rerender");
+  return <div>daad</div>;
 };
 
 export default TodoList;

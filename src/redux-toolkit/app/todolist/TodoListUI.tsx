@@ -20,9 +20,13 @@ interface TodoListUIProps {
 }
 
 const TodoListUI: React.FC<TodoListUIProps> = (props) => {
+  console.log("TodoListUI rerender");
+
   return (
     <div>
-      <span className="split-line">----------origin-redux-RTK----------</span>
+      <span className="split-line">
+        ----------redux-RTK-and-RTKQuery----------
+      </span>
       <div className="todolist-wrap">
         <div>
           <Input

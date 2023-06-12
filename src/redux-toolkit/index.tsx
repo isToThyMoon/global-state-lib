@@ -11,6 +11,7 @@ import { store } from "./store";
 import TodoList from "./app/todolist/TodoList";
 
 const ReduxToolkitDemo = () => {
+  console.log("ReduxToolkitDemo rerender");
   return (
     <Provider store={store}>
       <TodoList></TodoList>

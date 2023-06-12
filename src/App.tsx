@@ -7,23 +7,36 @@
  */
 import React from "react";
 import "./App.scss";
-
+// import "./fonts/index.scss"
 import ReducerDemo from "./useReducer/TodoList";
 import ReduxDemo from "./oldVersion-redux";
 import ReduxToolkitDemo from "./redux-toolkit";
 import JotaiDemo from "./jotai";
+import { Input, Button, List } from "antd";
+// import 'ayri-ui/es/button/style'
 
 function App() {
   console.log("app rerender");
+  const [count, setCount] = React.useState(0);
   return (
     <div className="App">
-      <ReducerDemo></ReducerDemo>
+      <div>{count}</div>
+      <Button
+        onClick={() => {
+          setCount((count) => count + 1);
+        }}
+      >
+        change count
+      </Button>
+      {/* <div style={{fontFamily: 'micon'}}>&#xe000;</div> */}
 
-      <ReduxDemo></ReduxDemo>
+      {/* <ReducerDemo></ReducerDemo>
+
+      <ReduxDemo></ReduxDemo> */}
 
       <ReduxToolkitDemo></ReduxToolkitDemo>
 
-      <JotaiDemo></JotaiDemo>
+      {/* <JotaiDemo></JotaiDemo> */}
     </div>
   );
 }
