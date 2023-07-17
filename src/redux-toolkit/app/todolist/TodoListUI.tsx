@@ -1,8 +1,8 @@
 /*
  * @Author: 王荣
  * @Date: 2022-09-26 11:51:13
- * @LastEditors: 王荣
- * @LastEditTime: 2022-09-27 22:39:42
+ * @LastEditors: tothymoon istothymoon@gmail.com
+ * @LastEditTime: 2023-07-14 00:15:44
  * @Description: 填写简介
  */
 
@@ -12,8 +12,8 @@ import { Input, Button, List } from "antd";
 const Item = List.Item;
 
 interface TodoListUIProps {
-  inputValue: string;
-  list: string[];
+  inputValue?: string;
+  list?: string[];
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleBtnClick: () => void;
   handleItemDelete: (index: any) => void;
