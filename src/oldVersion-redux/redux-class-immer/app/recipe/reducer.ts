@@ -11,21 +11,21 @@
 // import * as constants from './constants.js';
 // 大型项目推荐将action的type字符串单独抽成一份constants文件，避免低级的文字错误。看个人需求
 import {
-  CHANGE_INPUT_VALUE,
-  ADD_TODO_ITEM,
-  DELETE_TODO_ITEM,
-  INIT_LIST_ACTION,
-} from "./actionTypes";
-import { produce } from "immer";
+	CHANGE_INPUT_VALUE,
+	ADD_TODO_ITEM,
+	DELETE_TODO_ITEM,
+	INIT_LIST_ACTION
+} from './actionTypes';
+import { produce } from 'immer';
 
 interface actionType {
-  type: string;
-  value?: any;
+	type: string;
+	value?: any;
 }
 
 const defaultState: any = {
-  inputValue: "",
-  list: ["1", "2", "3"],
+	inputValue: '',
+	list: ['1', '2', '3']
 };
 
 // 常规reducer导出的是一个纯函数 唯一输入 唯一输出 没有副作用
@@ -97,23 +97,23 @@ const defaultState: any = {
 // };
 
 const reducer = produce((draftState = defaultState, action: actionType) => {
-  switch (action.type) {
-    case INIT_LIST_ACTION:
-      draftState.list = action.value;
-      break;
-    case CHANGE_INPUT_VALUE:
-      draftState.inputValue = action.value;
-      break;
-    case ADD_TODO_ITEM:
-      draftState.list.push(draftState.inputValue);
-      draftState.inputValue = "";
-      break;
-    case DELETE_TODO_ITEM:
-      draftState.list.splice(action.value, 1);
-      break;
-    default:
-      return draftState;
-  }
+	switch (action.type) {
+		case INIT_LIST_ACTION:
+			draftState.list = action.value;
+			break;
+		case CHANGE_INPUT_VALUE:
+			draftState.inputValue = action.value;
+			break;
+		case ADD_TODO_ITEM:
+			draftState.list.push(draftState.inputValue);
+			draftState.inputValue = '';
+			break;
+		case DELETE_TODO_ITEM:
+			draftState.list.splice(action.value, 1);
+			break;
+		default:
+			return draftState;
+	}
 });
 
 export default reducer;

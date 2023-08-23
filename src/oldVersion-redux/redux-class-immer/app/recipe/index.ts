@@ -8,7 +8,7 @@
 
 // 统一导出出口
 
-import * as actionCreators from "./actionCreators";
-import reducer from "./reducer";
+import * as actionCreators from './actionCreators';
+import reducer from './reducer';
 
 export { reducer, actionCreators };

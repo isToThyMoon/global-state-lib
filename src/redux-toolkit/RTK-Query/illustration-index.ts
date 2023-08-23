@@ -12,7 +12,7 @@
 //（当然引入时候无需携带dist目录，node mudule中的package.json做了引入路径的转发）
 // react目录下的为react hook专用，会自动把getPokemonByName这样的endpoint导出为useGetPokemonByNameQuery这样的自定义hook在函数组件中使用
 // import { createApi } from '@reduxjs/toolkit/query'
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Define a service using a base URL and expected endpoints
 // 要将RTKQuery缓存数据集成到redux数仓中，需要在redux的store配置中设置reducer，
@@ -26,30 +26,30 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(pokemonApi.middleware),
 // });
 export const pokemonApi = createApi({
-  // 配置对象
-  // 用来设置reducer的唯一标识，作为reducer的name，也主要用来在创建store时指定action的type属性，如果不指定默认为api
-  reducerPath: "pokemonApi",
-  // 用来设置发送请求的工具，RTKQuery提供了fetchBaseQuery作为查询工具，它对fetch进行了简单的封装，很方便，如果你不喜欢可以改用其他工具如axios
-  // 简单封装过的fetch调用后会返回一个封装后的工具函数。需要一个配置对象作为参数，baseUrl表示Api请求的基本路径，指定后请求将会以该路径为基本路径
-  baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
-  // Api对象封装了一类功能，比如学生的增删改查，我们会统一封装到一个对象中。一类功能中的每一个具体功能我们可以称它是一个端点。endpoints用来对请求中的端点进行配置。
-  endpoints: (builder) => ({
-    // endpoints是一个回调函数，收到一个build对象，使用build对象对点进行映射。回调函数的返回值是一个对象，Api对象中的所有端点都要在该对象中进行配置
-    // 对象中属性名就是要实现的功能名，比如获取所有学生可以命名为getStudents，根据id获取学生可以命名为getStudentById。属性值要通过build对象创建，分两种情况：
-    // 查询：build.query({})
-    // 增删改：build.mutation({})
+	// 配置对象
+	// 用来设置reducer的唯一标识，作为reducer的name，也主要用来在创建store时指定action的type属性，如果不指定默认为api
+	reducerPath: 'pokemonApi',
+	// 用来设置发送请求的工具，RTKQuery提供了fetchBaseQuery作为查询工具，它对fetch进行了简单的封装，很方便，如果你不喜欢可以改用其他工具如axios
+	// 简单封装过的fetch调用后会返回一个封装后的工具函数。需要一个配置对象作为参数，baseUrl表示Api请求的基本路径，指定后请求将会以该路径为基本路径
+	baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+	// Api对象封装了一类功能，比如学生的增删改查，我们会统一封装到一个对象中。一类功能中的每一个具体功能我们可以称它是一个端点。endpoints用来对请求中的端点进行配置。
+	endpoints: (builder) => ({
+		// endpoints是一个回调函数，收到一个build对象，使用build对象对点进行映射。回调函数的返回值是一个对象，Api对象中的所有端点都要在该对象中进行配置
+		// 对象中属性名就是要实现的功能名，比如获取所有学生可以命名为getStudents，根据id获取学生可以命名为getStudentById。属性值要通过build对象创建，分两种情况：
+		// 查询：build.query({})
+		// 增删改：build.mutation({})
 
-    // builder.query的ts参数，第一个时ResultType  第二个时QueryArg，RTKQuery通过复杂的类型体操实现了类型推导
-    getPokemonByName: builder.query<any, string>({
-      // builder.query也需要一个配置对象作为参数
-      // query方法：返回一个子路径，这个子路径将会和baseUrl拼接为一个完整的请求路径 这是最基本的配置
-      query: (name) => `pokemon/${name}`,
-    }),
+		// builder.query的ts参数，第一个时ResultType  第二个时QueryArg，RTKQuery通过复杂的类型体操实现了类型推导
+		getPokemonByName: builder.query<any, string>({
+			// builder.query也需要一个配置对象作为参数
+			// query方法：返回一个子路径，这个子路径将会和baseUrl拼接为一个完整的请求路径 这是最基本的配置
+			query: (name) => `pokemon/${name}`
+		}),
 
-    mutateData: builder.mutation({
-      query: () => ({ url: "/mutation", method: "post" }),
-    }),
-  }),
+		mutateData: builder.mutation({
+			query: () => ({ url: '/mutation', method: 'post' })
+		})
+	})
 });
 
 // Export hooks for usage in function components, which are

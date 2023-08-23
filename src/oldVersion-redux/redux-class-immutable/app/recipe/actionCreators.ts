@@ -8,35 +8,35 @@
 // 其实也是整合的异步逻辑的处理地点。
 
 // axios
-import { AnyAction } from "redux";
-import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 // import { getSearchList, getMoreList } from '../../ajax/api';
 
 import {
-  CHANGE_INPUT_VALUE,
-  ADD_TODO_ITEM,
-  DELETE_TODO_ITEM,
-  INIT_LIST_ACTION,
-} from "./actionTypes";
-import axios from "axios";
+	CHANGE_INPUT_VALUE,
+	ADD_TODO_ITEM,
+	DELETE_TODO_ITEM,
+	INIT_LIST_ACTION
+} from './actionTypes';
+import axios from 'axios';
 
 export const getInputChangeAction = (value) => ({
-  type: CHANGE_INPUT_VALUE,
-  value: value,
+	type: CHANGE_INPUT_VALUE,
+	value: value
 });
 
 export const getAddItemAction = () => ({
-  type: ADD_TODO_ITEM,
+	type: ADD_TODO_ITEM
 });
 
 export const getDeleteItemAction = (index) => ({
-  type: DELETE_TODO_ITEM,
-  value: index,
+	type: DELETE_TODO_ITEM,
+	value: index
 });
 
 export const initListAction = (data) => ({
-  type: INIT_LIST_ACTION,
-  value: data,
+	type: INIT_LIST_ACTION,
+	value: data
 });
 
 // export const handleSearch = (type:string, content:string)=>{

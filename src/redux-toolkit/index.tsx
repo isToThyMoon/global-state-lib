@@ -6,17 +6,17 @@
  * @Description: 填写简介
  */
 
-import { Provider } from "react-redux";
-import { store } from "./store";
-import TodoList from "./app/todolist/TodoList";
+import { Provider } from 'react-redux';
+import { store } from './store';
+import TodoList from './app/todolist/TodoList';
 
 const ReduxToolkitDemo = () => {
-  console.log("ReduxToolkitDemo rerender");
-  return (
-    <Provider store={store}>
-      <TodoList></TodoList>
-    </Provider>
-  );
+	console.log('ReduxToolkitDemo rerender');
+	return (
+		<Provider store={store}>
+			<TodoList></TodoList>
+		</Provider>
+	);
 };
 
 export default ReduxToolkitDemo;

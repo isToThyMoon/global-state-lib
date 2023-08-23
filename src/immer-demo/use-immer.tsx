@@ -6,38 +6,38 @@
  * @Description: useImmer hook 使用demo
  */
 
-import { useImmer } from "use-immer";
+import { useImmer } from 'use-immer';
 
 export default function UseImmer() {
-  const [person, setPerson] = useImmer({
-    name: "Sally",
-    salary: "3000",
-  });
-  function setName(name) {
-    setPerson((draft) => {
-      draft.name = name;
-    });
-  }
+	const [person, setPerson] = useImmer({
+		name: 'Sally',
+		salary: '3000'
+	});
+	function setName(name) {
+		setPerson((draft) => {
+			draft.name = name;
+		});
+	}
 
-  function becomeRicher() {
-    setPerson((draft) => {
-      draft.salary += "$￥";
-    });
-  }
+	function becomeRicher() {
+		setPerson((draft) => {
+			draft.salary += '$￥';
+		});
+	}
 
-  return (
-    <div className="App">
-      <h1>
-        {person.name} ({person.salary})
-      </h1>
-      <input
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-        value={person.name}
-      />
-      <br />
-      <button onClick={becomeRicher}>变富</button>
-    </div>
-  );
+	return (
+		<div className="App">
+			<h1>
+				{person.name} ({person.salary})
+			</h1>
+			<input
+				onChange={(e) => {
+					setName(e.target.value);
+				}}
+				value={person.name}
+			/>
+			<br />
+			<button onClick={becomeRicher}>变富</button>
+		</div>
+	);
 }
