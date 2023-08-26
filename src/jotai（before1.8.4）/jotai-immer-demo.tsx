@@ -1,8 +1,8 @@
 /*
  * @Author: 王荣
  * @Date: 2022-09-22 16:01:08
- * @LastEditors: 王荣
- * @LastEditTime: 2022-09-27 22:32:43
+ * @LastEditors: tothymoon-mac istothymoon@gmail.com
+ * @LastEditTime: 2023-08-27 00:42:03
  * @Description: 填写简介
  */
 
@@ -127,5 +127,6 @@ const ChildJotai = React.memo(() => {
 		</div>
 	);
 });
+ChildJotai.displayName = 'ChildJotai';
 
 export default JotaiImmerDemo;

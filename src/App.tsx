@@ -18,6 +18,7 @@ import { Input, Button, List } from 'antd';
 function App() {
 	console.log('app rerender');
 	const [count, setCount] = React.useState(0);
+
 	return (
 		<div className="App">
 			<div>{count}</div>
@@ -35,7 +36,13 @@ function App() {
       <ReduxDemo></ReduxDemo> */}
 
 			<ReduxToolkitDemo></ReduxToolkitDemo>
-
+			{/*<img*/}
+			{/*	id={'imgT'}*/}
+			{/*	width={100}*/}
+			{/*	height={100}*/}
+			{/*	alt=""*/}
+			{/*	src="https://pic.52112.com/180713/JPG-180713_971/IEJfum1Akb_small.jpg"*/}
+			{/*/>*/}
 			{/* <JotaiDemo></JotaiDemo> */}
 		</div>
 	);
