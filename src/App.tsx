@@ -1,8 +1,8 @@
 /*
  * @Author: 王荣
  * @Date: 2022-09-21 00:03:11
- * @LastEditors: 王荣
- * @LastEditTime: 2022-11-04 13:59:05
+ * @LastEditors: tothymoon-mac istothymoon@gmail.com
+ * @LastEditTime: 2023-08-27 00:47:13
  * @Description: 填写简介
  */
 import React from 'react';
@@ -11,7 +11,7 @@ import './App.scss';
 import ReducerDemo from './useReducer/TodoList';
 import ReduxDemo from './oldVersion-redux';
 import ReduxToolkitDemo from './redux-toolkit';
-import JotaiDemo from './jotai';
+import JotaiDemo from './jotai（before1.8.4）';
 import { Input, Button, List } from 'antd';
 // import 'ayri-ui/es/button/style'
 
