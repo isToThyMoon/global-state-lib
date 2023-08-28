@@ -14,6 +14,7 @@ import ReduxToolkitDemo from './redux-toolkit';
 import JotaiDemo from './jotai（before1.8.4）';
 import { Input, Button, List } from 'antd';
 // import 'ayri-ui/es/button/style'
+import AntdTable from './antdDemo';
 
 function App() {
 	console.log('app rerender');
@@ -44,6 +45,7 @@ function App() {
 			{/*	src="https://pic.52112.com/180713/JPG-180713_971/IEJfum1Akb_small.jpg"*/}
 			{/*/>*/}
 			{/* <JotaiDemo></JotaiDemo> */}
+			<AntdTable></AntdTable>
 		</div>
 	);
 }
