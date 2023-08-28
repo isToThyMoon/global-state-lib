@@ -108,7 +108,7 @@ const Foo: React.FC<{
 			>
 				dada
 			</div>
-			<div>{inputValue}</div>
+			{/*<div>{inputValue}</div>*/}
 		</>
 	);
 };
